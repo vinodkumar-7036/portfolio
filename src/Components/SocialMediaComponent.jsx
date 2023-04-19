@@ -39,12 +39,7 @@ function SocialMediaComponent(props) {
 
   const list = (anchor) => (
     <>
-      {/* <List className="content_list" > */}
-      {/* <Card varient="outlined" className="dash_header1"> */}
-
-      {/* </Card> */}
       <Divider />
-      {/* </List> */}
     </>
   );
 

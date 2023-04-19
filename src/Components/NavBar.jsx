@@ -1,16 +1,27 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { SideNavComponent } from "./SideNavComponent";
-import DashBoard from "./DashBoard";
+import DashBoard from "./Routing/DashBoard";
+import Orders from "./Routing/Orders";
+import TeamMembers from "./Routing/TeamMembers";
+
+import Partners from "./Routing/Partners";
+import ProductListing from "./Routing/ProductListing";
+import Awards from "./Routing/Awards";
+import AboutUs from "./Routing/AboutUs";
+import PaymentInfo from "./Routing/PaymentInfo";
 
 function NavBar() {
   return (
     <div>
-      <SideNavComponent />
       <Routes>
-        <Route path="/dashboard" component={<DashBoard />} />
-        {/* <Route path="/" exact component={Dashboard} />
-        <Route path="/" exact component={Dashboard} /> */}
+        <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/teammembers" element={<TeamMembers />} />
+        <Route path="/partners" element={<Partners />} />
+        <Route path="/productlisting" element={<ProductListing />} />
+        <Route path="/awards&honors" element={<Awards />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/paymentinfo" element={<PaymentInfo />} />
       </Routes>
     </div>
   );

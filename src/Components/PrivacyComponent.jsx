@@ -5,6 +5,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
+import "./Header.css";
 
 function PrivacyComponent(props) {
   const [state, setState] = useState(false);

@@ -1,23 +1,80 @@
-// import React from 'react'
+import * as React from "react";
+import Drawer from "@mui/material/Drawer";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import { styled } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-// function StatementComponent() {
-//   return (
-//     <div>
-//        <Card sx={{ minWidth: 275 }}>
-//       <CardContent>
-//         <Typography>Table Content:</Typography>
+import { CardContent } from "@material-ui/core";
+import "./Header.css";
 
-//         <div>Introduction</div>
-//         <div>Data Collect</div>
-//         <div>How we us your data</div>
-//         <div>How we share the information</div>
-//         <div>Your Choices and obligation</div>
-//         <div>Other important information</div>
+function SocialMediaComponent(props) {
+  const [state, setState] = React.useState({
+    right: false,
+  });
 
-//       </CardContent>
-//     </Card>
-//     </div>
-//   )
-// }
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: "",
+    "& .MuiInputBase-input": {
+      padding: theme.spacing(1, 1, 1, 0),
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create("width"),
+      width: "100%",
+      [theme.breakpoints.up("md")]: {
+        width: "20ch",
+      },
+    },
+  }));
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
 
-// export default StatementComponent
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <>
+      <Divider />
+    </>
+  );
+
+  return (
+    <div>
+      {["right"].map((anchor) => (
+        <React.Fragment key={anchor}>
+          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Drawer
+            className="drawer-content"
+            anchor={anchor}
+            open={props.open}
+            onClose={() => props.onClose()}
+          >
+            {list(anchor)}
+            <div className="dash_header1">
+              <React.Fragment>
+                <div className="dash_header1">
+                  <CardContent>
+                    <h2>
+                      {" "}
+                      <ArrowBackIcon /> Social Media & Links{" "}
+                    </h2>
+                    <p>
+                      Please provide the links to social media accounts and
+                      website of the company
+                    </p>
+                  </CardContent>
+                </div>
+              </React.Fragment>
+            </div>
+          </Drawer>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+export default SocialMediaComponent;

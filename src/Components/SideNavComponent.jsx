@@ -22,6 +22,7 @@ import CardContent from "@mui/material/CardContent";
 import ContactSupportRoundedIcon from "@mui/icons-material/ContactSupportRounded";
 import { SideNavItems } from "./SideNavItems";
 import { BrowserRouter, NavLink } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const drawerWidth = 240;
 
@@ -47,7 +48,7 @@ export default function SideNavComponent() {
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={link.name} />
+                <ListItemText style={{ color: "grey" }} primary={link.name} />
               </ListItemButton>
             </ListItem>
           </NavLink>
@@ -100,7 +101,7 @@ export default function SideNavComponent() {
         <AppBar
           className="app-header-container"
           position=""
-          sx={{ width: "0" }}
+          sx={{ width: "0", color: "grey" }}
         >
           <Toolbar>
             <IconButton
@@ -114,7 +115,10 @@ export default function SideNavComponent() {
         </AppBar>
         <Box
           component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+          sx={{
+            width: { sm: drawerWidth },
+            flexShrink: { sm: 0 },
+          }}
           aria-label="mailbox folders"
         >
           <Drawer
@@ -125,13 +129,13 @@ export default function SideNavComponent() {
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
                 width: drawerWidth,
-                top: "60px",
+                top: "50px",
                 overflow: "hidden",
               },
             }}
             open
           >
-            <div className="drawer-content">{drawer}</div>
+            <List>{drawer}</List>
           </Drawer>
         </Box>
         <Box
@@ -141,17 +145,19 @@ export default function SideNavComponent() {
             p: 3,
             width: { sm: `calc(100% - ${drawerWidth}px)` },
           }}
+          style={{ marginTop: "50px" }}
         >
-          <h1>About Us</h1>
+          {/* <h1>About Us</h1>
           <p contentEditable={edit}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            <EditIcon
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
+          {/* <EditIcon
               onClick={() => setEdit(!edit)}
               style={{ color: "brown" }}
-            />
-          </p>
-          <TabComponent />
+            /> */}
+          {/* </p> */}
+          {/* <TabComponent /> */}
+          <NavBar />
         </Box>
       </Box>
     </>

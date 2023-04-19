@@ -27,6 +27,11 @@ function CardComponent() {
   const [data, setData] = useState(false);
   const [data1, setData1] = useState(false);
   const [data2, setData2] = useState(false);
+
+  // const onEditHandler = (actionType) => {
+  //   if (actionType === "contact") {
+  //   }
+  // };
   const handleOpen = () => {
     console.log("Cliked!!");
     setOpen(!open);
