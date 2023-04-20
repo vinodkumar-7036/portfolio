@@ -18,7 +18,7 @@ function NavBar() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/teammembers" element={<TeamMembers />} />
         <Route path="/partners" element={<Partners />} />
-        <Route path="/productlisting" element={<ProductListing />} />
+        <Route exact path="/productlistings" element={<ProductListing />} />
         <Route path="/awards&honors" element={<Awards />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/paymentinfo" element={<PaymentInfo />} />

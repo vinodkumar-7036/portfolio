@@ -71,3 +71,10 @@
 .sidebar-items-list {
   text-underline-offset: none;
 }
+.Table_card {
+  border: 1px solid;
+  width: 220px;
+  height: 250px;
+  left: 50px;
+  padding: 0px 8px;
+}

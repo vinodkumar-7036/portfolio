@@ -10,16 +10,6 @@ import "./Header.css";
 function PrivacyComponent(props) {
   const [state, setState] = useState(false);
   const [edit, setEdit] = useState(false);
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
 
   return (
     <div className="content_edit">
@@ -42,7 +32,6 @@ function PrivacyComponent(props) {
       <div className="table_content">
         {["right"].map((anchor) => (
           <React.Fragment key={anchor}>
-            <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
             <Drawer
               anchor={anchor}
               open={props.open}
@@ -50,18 +39,19 @@ function PrivacyComponent(props) {
             ></Drawer>
           </React.Fragment>
         ))}
-        <Card sx={{ minWidth: 275 }}>
-          <CardContent>
-            <Typography>Table Content:</Typography>
 
-            <div>Introduction</div>
-            <div>Data Collect</div>
-            <div>How we us your data</div>
-            <div>How we share the information</div>
-            <div>Your Choices and obligation</div>
-            <div>Other important information</div>
-          </CardContent>
-        </Card>
+        <div className="Table_card">
+          {/* <Card sx={{ minWidth: 275 }}> */} {/* <CardContent> */}
+          <Typography>Table Content:</Typography>
+          <div>Introduction</div>
+          <div>Data Collect</div>
+          <div>How we us your data</div>
+          <div>How we share the information</div>
+          <div>Your Choices and obligation</div>
+          <div>Other important information</div>
+          {/* </CardContent> */}
+          {/* </Card> */}
+        </div>
       </div>
     </div>
   );

@@ -56,23 +56,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const mobileMenuId = "primary-search-account-menu-mobile";
+  // const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
-    <Menu
-    // anchorEl={mobileMoreAnchorEl}
-    // anchorOrigin={{
-    //   vertical: "top",
-    //   horizontal: "right",
-    // }}
-    // id={mobileMenuId}
-    // keepMounted
-    // transformOrigin={{
-    //   vertical: "top",
-    //   horizontal: "right",
-    // }}
-    // open={isMobileMenuOpen}
-    // onClose={handleMobileMenuClose}
-    >
+    <Menu>
       <MenuItem>
         <IconButton
           size="large"
@@ -119,12 +105,12 @@ export default function PrimarySearchAppBar() {
             </IconButton>
 
             <Search className="Search-icon">
-              <SearchIconWrapper>
+              <SearchIconWrapper className="Search_content">
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
+                inputProps={{ "aria-label": "search", fontSize: "10px" }}
               />
             </Search>
             <Box sx={{ flexGrow: 1 }} />

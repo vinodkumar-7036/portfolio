@@ -20,7 +20,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import TemporaryDrawer from "./IconComponent";
 import AdressComponent from "./AdressComponent";
 import SocialMediaComponent from "./SocialMediaComponent";
-import PrivacyComponent from "./PrivacyComponent";
+import StatementComponent from "./StatementComponent";
 
 function CardComponent() {
   const [open, setOpen] = useState(false);
@@ -52,6 +52,7 @@ function CardComponent() {
     setData1(false);
   };
   const handleOpen3 = () => {
+    console.log("???");
     setData2(!data2);
   };
   const handleClose3 = () => {
@@ -304,7 +305,7 @@ function CardComponent() {
                     onClick={() => handleOpen3()}
                     style={{ color: "brown", left: "20px" }}
                   />
-                  <PrivacyComponent open={data2} onClose={handleClose3} />
+                  <StatementComponent isOpen={data2} onClose={handleClose3} />
                 </Typography>
                 <div className="display_flex">
                   <Typography variant="body2" className="lastmonth_value">

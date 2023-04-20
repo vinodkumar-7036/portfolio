@@ -1,6 +1,5 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -15,25 +14,12 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import AdressComponent from "./AdressComponent";
 
 export default function TemporaryDrawer(props) {
-  const [state, setState] = React.useState({
-    right: false,
-  });
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
   const handleClose = () => {
     setOpen(false);
-  };
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
   };
 
   const list = (anchor, array1, array2, array3) => (
@@ -68,10 +54,7 @@ export default function TemporaryDrawer(props) {
                           >
                             <EmailIcon /> salesteam@br.in/ salesteam2@br.in
                           </Typography>
-                          <Typography
-                            variant="body2"
-                            // className="lastmonth_text"
-                          >
+                          <Typography variant="body2">
                             <PhoneIcon /> +91 8569473214 / 9632547155
                           </Typography>
                         </div>
@@ -93,7 +76,6 @@ export default function TemporaryDrawer(props) {
     <div>
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
           <Drawer
             anchor={anchor}
             open={props.open}

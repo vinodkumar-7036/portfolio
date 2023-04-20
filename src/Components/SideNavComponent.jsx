@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
@@ -14,21 +13,18 @@ import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import TabComponent from "./TabComponent";
-import EditIcon from "@mui/icons-material/Edit";
 import "./Header.css";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import ContactSupportRoundedIcon from "@mui/icons-material/ContactSupportRounded";
 import { SideNavItems } from "./SideNavItems";
-import { BrowserRouter, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import NavBar from "./NavBar";
 
 const drawerWidth = 240;
 
 export default function SideNavComponent() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [edit, setEdit] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -54,7 +50,6 @@ export default function SideNavComponent() {
           </NavLink>
         ))}
       </List>
-      <Divider />
       <Card variant="outlined" className="dash_header">
         <React.Fragment>
           <CardContent>
@@ -66,7 +61,6 @@ export default function SideNavComponent() {
                   className="header_card_count"
                 >
                   <ContactSupportRoundedIcon />
-                  {/* {item.count} */}
                 </Typography>
                 <div className="display_flex">
                   <Typography variant="body2" className="lastmonth_value">
@@ -118,6 +112,7 @@ export default function SideNavComponent() {
           sx={{
             width: { sm: drawerWidth },
             flexShrink: { sm: 0 },
+            fontSize: "0px",
           }}
           aria-label="mailbox folders"
         >
@@ -147,16 +142,6 @@ export default function SideNavComponent() {
           }}
           style={{ marginTop: "50px" }}
         >
-          {/* <h1>About Us</h1>
-          <p contentEditable={edit}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
-          {/* <EditIcon
-              onClick={() => setEdit(!edit)}
-              style={{ color: "brown" }}
-            /> */}
-          {/* </p> */}
-          {/* <TabComponent /> */}
           <NavBar />
         </Box>
       </Box>
