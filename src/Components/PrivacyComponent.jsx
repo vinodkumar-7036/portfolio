@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import { Typography } from "@material-ui/core";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
 import "./Header.css";
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -11,19 +11,46 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
-import AdressComponent from "./AdressComponent";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useContext } from "react";
+import { AddressContext } from "../App";
 
 export default function TemporaryDrawer(props) {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(!open);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [saved, setSaved] = useState({});
+  const [email, setEmail] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [updated, setUpdated] = useState("");
+  const { inputData, setInputData } = useContext(AddressContext);
 
+  const handleClicked = () => {
+    setUpdated(!updated);
+  };
+  const handleSave = () => {
+    let obj = {
+      email: email,
+      phoneNo: phoneNo,
+    };
+    setInputData({ ...obj });
+    console.log(":::::>", obj);
+  };
+  useEffect(() => {
+    console.log("======", inputData);
+    if (Object.keys(inputData).length) {
+      setEmail(inputData?.email);
+      setPhoneNo(inputData?.phoneNo);
+    }
+  }, [inputData]);
   const list = (anchor, array1, array2, array3) => (
     <>
+      <div>
+        <Typography id="spring-modal-title" variant="h6" component="h2">
+          <ArrowBackIcon /> Contacts
+        </Typography>
+        <Typography id="spring-modal-description" sx={{ mt: 2 }}>
+          Please Provide the Company's email & Contacts
+        </Typography>
+      </div>
       <List className="list_content">
         {[array1, array2, array3].map((text, index) => (
           <ListItem key={text} disablePadding>
@@ -41,10 +68,29 @@ export default function TemporaryDrawer(props) {
                           Sales Team
                           <DeleteIcon style={{ color: "brown" }} />
                           <EditIcon
-                            onClick={handleOpen}
+                            onClick={handleClicked}
                             style={{ color: "brown", left: "20px" }}
                           />
-                          <AdressComponent open={open} onClose={handleClose} />
+                          {updated && (
+                            <div className="Contact_edit">
+                              <div>
+                                <EmailIcon />
+                                <input
+                                  value={email}
+                                  placeholder="Email"
+                                  onChange={(e) => setEmail(e.target.value)}
+                                />
+                              </div>
+                              <div>
+                                <PhoneIcon />
+                                <input
+                                  value={phoneNo}
+                                  placeholder="Phone No"
+                                  onChange={(e) => setPhoneNo(e.target.value)}
+                                />
+                              </div>
+                            </div>
+                          )}
                         </Typography>
 
                         <div className="display_flex">
@@ -52,10 +98,19 @@ export default function TemporaryDrawer(props) {
                             variant="body2"
                             className="lastmonth_value"
                           >
-                            <EmailIcon /> salesteam@br.in/ salesteam2@br.in
+                            <div>
+                              <EmailIcon />
+                              sourabh@gmail.com
+                            </div>
+                            {/* <input
+                                placeholder="Email"
+                                onChange={(e) => setEmail(e.target.value)}
+                              />
+                            </div>  */}
                           </Typography>
                           <Typography variant="body2">
-                            <PhoneIcon /> +91 8569473214 / 9632547155
+                            <PhoneIcon />
+                            +91 8569473214
                           </Typography>
                         </div>
                       </div>
@@ -67,7 +122,9 @@ export default function TemporaryDrawer(props) {
             </ListItemButton>
           </ListItem>
         ))}
-        <button className="button-container"> Save</button>
+        <button onClick={handleSave} className="button-container">
+          Save
+        </button>
       </List>
     </>
   );

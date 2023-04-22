@@ -1,5 +1,5 @@
 import React from "react";
-import TabComponent from "../TabComponent";
+import LabTabs from "../TabComponent";
 function AboutUs() {
   return (
     <div>
@@ -8,7 +8,7 @@ function AboutUs() {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua
       </p>
-      <TabComponent />
+      <LabTabs />
     </div>
   );
 }

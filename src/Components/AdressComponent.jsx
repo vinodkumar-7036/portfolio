@@ -1,28 +1,48 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Drawer from "@mui/material/Drawer";
-import { styled } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 import { CardContent } from "@material-ui/core";
 import "./Header.css";
+import { useContext } from "react";
+import { AddressContext } from "../App";
 
 function AdressComponent(props) {
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "20ch",
-      },
-    },
-  }));
+  const [flatNo, setFlatNo] = useState("");
+  const [area, setArea] = useState("");
+  const [landmark, setLandMark] = useState("");
+  const [town, setTown] = useState("");
+  const [city, setCity] = useState("");
+  const [pincode, setPinCode] = useState("");
+  const { adressData, setAdressData } = useContext(AddressContext);
+
+  const handleSubmit = () => {
+    const temp = {
+      flatNo: flatNo,
+      area: area,
+      landmark: landmark,
+      town: town,
+      city: city,
+      pincode: pincode,
+    };
+    setAdressData({ ...temp });
+    console.log(":::::::>", temp);
+  };
+  useEffect(() => {
+    // console.log("....", adressData);
+    if (Object.keys(adressData).length) {
+      setFlatNo(adressData?.flatNo);
+      setArea(adressData?.area);
+      setLandMark(adressData?.landmark);
+      setTown(adressData?.town);
+      setCity(adressData?.city);
+      setPinCode(adressData?.pincode);
+    }
+  }, [adressData]);
 
   return (
     <div>
-      {["right"].map((anchor) => (
+      {["right"].map((anchor, index) => (
         <Drawer
+          key={index}
           className="drawer-content"
           anchor={anchor}
           open={props.open}
@@ -32,42 +52,53 @@ function AdressComponent(props) {
             <div className="dash_header1">
               <CardContent>
                 <div>Adress</div>
-                <div></div>
-
-                <div>
-                  <StyledInputBase
-                    placeholder="FloorNo/BlockNo"
-                    inputProps={{ "aria-label": "search" }}
-                  />
+                <div className="adress_content">
+                  <div>
+                    <input
+                      placeholder="FloorNo/BlockNo"
+                      value={flatNo}
+                      onChange={(e) => setFlatNo(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      placeholder="Area Locality"
+                      value={area}
+                      onChange={(e) => setArea(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      value={landmark}
+                      placeholder="Nearest LandMark"
+                      onChange={(e) => setLandMark(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      value={town}
+                      placeholder="Town City"
+                      onChange={(e) => setTown(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      value={city}
+                      placeholder="City"
+                      onChange={(e) => setCity(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <input
+                      value={pincode}
+                      placeholder="Pincode"
+                      onChange={(e) => setPinCode(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <button onClick={handleSubmit}>Save</button>
+                  </div>
                 </div>
-                <div>
-                  <StyledInputBase
-                    placeholder="Area Locality"
-                    inputProps={{ "aria-label": "search" }}
-                  />
-                </div>
-                <div>
-                  <StyledInputBase
-                    placeholder="Nearest LandMark"
-                    inputProps={{ "aria-label": "search" }}
-                  />
-                </div>
-                <div>
-                  <StyledInputBase
-                    placeholder="Town City"
-                    inputProps={{ "aria-label": "search" }}
-                  />
-                </div>
-                <div>
-                  <StyledInputBase
-                    placeholder="City"
-                    inputProps={{ "aria-label": "search" }}
-                  />
-                </div>
-                <StyledInputBase
-                  placeholder="Pincode"
-                  inputProps={{ "aria-label": "search" }}
-                />
               </CardContent>
             </div>
           </div>

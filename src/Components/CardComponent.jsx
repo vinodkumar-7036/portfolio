@@ -15,42 +15,44 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkRoundedIcon from "@mui/icons-material/LinkRounded";
 import FormatQuoteRoundedIcon from "@mui/icons-material/FormatQuoteRounded";
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import TemporaryDrawer from "./IconComponent";
 import AdressComponent from "./AdressComponent";
 import SocialMediaComponent from "./SocialMediaComponent";
 import StatementComponent from "./StatementComponent";
+import { useContext } from "react";
+import { AddressContext } from "../App";
 
 function CardComponent() {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(false);
   const [data1, setData1] = useState(false);
   const [data2, setData2] = useState(false);
+  const { adressData } = useContext(AddressContext);
+  const { inputData } = useContext(AddressContext);
 
-  // const onEditHandler = (actionType) => {
-  //   if (actionType === "contact") {
-  //   }
-  // };
   const handleOpen = () => {
-    console.log("Cliked!!");
     setOpen(!open);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
+
   const handleOpen1 = () => {
     setData(!data);
   };
   const handleClose1 = () => {
     setData(false);
   };
+
   const handleOpen2 = () => {
     setData1(!data1);
   };
+
   const handleClose2 = () => {
     setData1(false);
   };
+
   const handleOpen3 = () => {
     console.log("???");
     setData2(!data2);
@@ -58,9 +60,6 @@ function CardComponent() {
   const handleClose3 = () => {
     setData2(false);
   };
-  // const handleClick=()=>{
-  //   setClick(false);
-  // }
 
   return (
     <div className="card_header">
@@ -83,120 +82,16 @@ function CardComponent() {
                   <TemporaryDrawer open={open} onClose={handleClose} />
                 </Typography>
 
-                <Typography id="spring-modal-title" variant="h6" component="h2">
-                  <ArrowBackIcon /> Contacts
-                </Typography>
-                <Typography id="spring-modal-description" sx={{ mt: 2 }}>
-                  Please Provide the Company's email & Contacts
-                </Typography>
-                <Card variant="outlined" className="dash_header">
-                  <React.Fragment>
-                    <CardContent>
-                      <div className="header_row">
-                        <div>
-                          <Typography
-                            sx={{ mb: 1.5 }}
-                            color="text.secondary"
-                            className="header_card_count"
-                          >
-                            <ContactPageIcon />
-                            Sales Team
-                            <DeleteIcon style={{ color: "brown" }} />
-                            <EditIcon
-                              style={{ color: "brown", left: "20px" }}
-                            />
-                          </Typography>
-
-                          <div className="display_flex">
-                            <Typography
-                              variant="body2"
-                              className="lastmonth_value"
-                            >
-                              <EmailIcon /> salesteam@br.in/ salesteam2@br.in
-                            </Typography>
-                            <Typography variant="body2">
-                              <PhoneIcon /> +91 8569473214 / 9632547155
-                            </Typography>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </React.Fragment>
-                </Card>
-                <Card variant="outlined" className="dash_header">
-                  <React.Fragment>
-                    <CardContent>
-                      <div className="header_row">
-                        <div>
-                          <Typography
-                            sx={{ mb: 1.5 }}
-                            color="text.secondary"
-                            className="header_card_count"
-                          >
-                            <ContactPageIcon />
-                            Marketing Team
-                            <DeleteIcon style={{ color: "brown" }} />
-                            <EditIcon
-                              style={{ color: "brown", left: "20px" }}
-                            />
-                          </Typography>
-                          <div className="display_flex">
-                            <Typography
-                              variant="body2"
-                              className="lastmonth_value"
-                            >
-                              <EmailIcon /> salesteam@br.in/ salesteam2@br.in
-                            </Typography>
-                            <Typography variant="body2">
-                              <PhoneIcon /> +91 8569473214 / 9632547155
-                            </Typography>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </React.Fragment>
-                </Card>
-                <Card variant="outlined" className="dash_header">
-                  <React.Fragment>
-                    <CardContent>
-                      <div className="header_row">
-                        <div>
-                          <Typography
-                            sx={{ mb: 1.5 }}
-                            color="text.secondary"
-                            className="header_card_count"
-                          >
-                            <ContactPageIcon />
-                            Marketing Team
-                            <DeleteIcon style={{ color: "brown" }} />
-                            <EditIcon
-                              style={{ color: "brown", left: "20px" }}
-                            />
-                          </Typography>
-                          <div className="display_flex">
-                            <Typography
-                              variant="body2"
-                              className="lastmonth_value"
-                            >
-                              <EmailIcon /> salesteam@br.in/ salesteam2@br.in
-                            </Typography>
-                            <Typography variant="body2">
-                              <PhoneIcon /> +91 8569473214 / 9632547155
-                            </Typography>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </React.Fragment>
-                </Card>
-
                 <div className="display_flex">
                   <Typography variant="body2" className="lastmonth_value">
-                    <EmailIcon /> salesteam@br.in/ salesteam2@br.in
+                    {/* <EmailIcon /> */}
+                    {Object.keys(inputData).map((key, index) => {
+                      return <div key={index}>{inputData[key]}</div>;
+                    })}
                   </Typography>
-                  <Typography variant="body2">
-                    <PhoneIcon /> +91 8569473214 / 9632547155
-                  </Typography>
+                  {/* <Typography variant="body2">
+                    <PhoneIcon /> +91 8569473214
+                  </Typography> */}
                 </div>
               </div>
             </div>
@@ -222,9 +117,9 @@ function CardComponent() {
                 </Typography>
                 <div className="display_flex">
                   <Typography variant="body2" className="lastmonth_value">
-                    C-1-351/4, Gidc Makrapura,
-                    <br />
-                    Vadodara-560039,Gujarat,india
+                    {Object.keys(adressData).map((key, index) => {
+                      return <div key={index}>{adressData[key]}</div>;
+                    })}
                   </Typography>
                   <Typography variant="body2"></Typography>
                 </div>

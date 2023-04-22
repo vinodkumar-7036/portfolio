@@ -21,10 +21,10 @@ function SocialMediaComponent(props) {
 
   return (
     <div>
-      {["right"].map((anchor) => (
+      {[].map((key, anchor) => (
         <Drawer
+          key={key}
           className="drawer-content"
-          s
           anchor={anchor}
           open={props.open}
           onClose={() => props.onClose()}
