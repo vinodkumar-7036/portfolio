@@ -21,6 +21,7 @@ import SocialMediaComponent from "./SocialMediaComponent";
 import StatementComponent from "./StatementComponent";
 import { useContext } from "react";
 import { AddressContext } from "../App";
+import { useSelector } from "react-redux";
 
 function CardComponent() {
   const [open, setOpen] = useState(false);
@@ -29,6 +30,10 @@ function CardComponent() {
   const [data2, setData2] = useState(false);
   const { adressData } = useContext(AddressContext);
   const { inputData } = useContext(AddressContext);
+  const count = useSelector((state) => {
+    return state.count;
+  });
+  console.log(":::::>inetial state", count);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -88,7 +93,13 @@ function CardComponent() {
                     {Object.keys(inputData).map((key, index) => {
                       return <div key={index}>{inputData[key]}</div>;
                     })}
+                    {/* {count[0].email} */}
+                    {/* vinodg2295@gmail.com */}
+                    {count.map((val, index) => {
+                      return <div key={index}>{val.email}</div>;
+                    })}
                   </Typography>
+
                   {/* <Typography variant="body2">
                     <PhoneIcon /> +91 8569473214
                   </Typography> */}

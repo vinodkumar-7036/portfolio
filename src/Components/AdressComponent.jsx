@@ -4,6 +4,8 @@ import { CardContent } from "@material-ui/core";
 import "./Header.css";
 import { useContext } from "react";
 import { AddressContext } from "../App";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function AdressComponent(props) {
   const [flatNo, setFlatNo] = useState("");
@@ -13,6 +15,11 @@ function AdressComponent(props) {
   const [city, setCity] = useState("");
   const [pincode, setPinCode] = useState("");
   const { adressData, setAdressData } = useContext(AddressContext);
+  const dispatch = useDispatch();
+  const count1 = useSelector((state) => {
+    return state.count;
+  });
+  console.log("=====>updatestate", count1);
 
   const handleSubmit = () => {
     const temp = {
@@ -23,7 +30,8 @@ function AdressComponent(props) {
       city: city,
       pincode: pincode,
     };
-    setAdressData({ ...temp });
+    dispatch({ type: "SAVED_DATA", payload: temp });
+    // setAdressData({ ...temp });
     console.log(":::::::>", temp);
   };
   useEffect(() => {

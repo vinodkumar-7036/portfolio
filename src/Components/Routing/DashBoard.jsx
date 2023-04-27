@@ -1,5 +1,4 @@
 import { Bar } from "react-chartjs-2";
-// import faker from "faker";
 import { Chart, LinearScale, CategoryScale, BarElement } from "chart.js";
 Chart.register(LinearScale, CategoryScale, BarElement);
 const labels = [
@@ -30,10 +29,6 @@ export const options = {
   },
 };
 
-// console.log(
-//   ":::::::>",
-//   labels.map(() => faker.datatype.number({ min: -1000, max: 1000 }))
-// );
 export const data = {
   labels,
   datasets: [
@@ -60,7 +55,7 @@ export const data = {
 function DashBoard() {
   return (
     <div>
-      <h1>Dasboard</h1>
+      <h1>Dashboard</h1>
       <Bar data={data} />
     </div>
   );

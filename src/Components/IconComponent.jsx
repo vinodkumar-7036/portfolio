@@ -14,6 +14,8 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useContext } from "react";
 import { AddressContext } from "../App";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function TemporaryDrawer(props) {
   const [open, setOpen] = useState(false);
@@ -22,6 +24,13 @@ export default function TemporaryDrawer(props) {
   const [phoneNo, setPhoneNo] = useState("");
   const [updated, setUpdated] = useState("");
   const { inputData, setInputData } = useContext(AddressContext);
+  const dispatch = useDispatch();
+  const count = useSelector((state) => {
+    return state.count;
+  });
+  // const count2 = useSelector((state) => {
+  //   return state.count;
+  // });
 
   const handleClicked = () => {
     setUpdated(!updated);
@@ -31,16 +40,18 @@ export default function TemporaryDrawer(props) {
       email: email,
       phoneNo: phoneNo,
     };
-    setInputData({ ...obj });
-    console.log(":::::>", obj);
+
+    dispatch({ type: "UPDATE_DATA", payload: obj });
+    // setInputData({ ...obj });
+    // console.log(":::::>", obj);
   };
-  useEffect(() => {
-    console.log("======", inputData);
-    if (Object.keys(inputData).length) {
-      setEmail(inputData?.email);
-      setPhoneNo(inputData?.phoneNo);
-    }
-  }, [inputData]);
+  // useEffect(() => {
+  //   console.log("======", inputData);
+  //   if (Object.keys(inputData).length) {
+  //     setEmail(inputData?.email);
+  //     setPhoneNo(inputData?.phoneNo);
+  //   }
+  // }, [inputData]);
   const list = (anchor, array1, array2, array3) => (
     <>
       <div>
@@ -52,7 +63,7 @@ export default function TemporaryDrawer(props) {
         </Typography>
       </div>
       <List className="list_content">
-        {[array1, array2, array3].map((text, index) => (
+        {[array1, array2, array3].map((text) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <Card variant="outlined" className="dash_header">
@@ -99,8 +110,17 @@ export default function TemporaryDrawer(props) {
                             className="lastmonth_value"
                           >
                             <div>
-                              <EmailIcon />
-                              sourabh@gmail.com
+                              <Typography>
+                                <EmailIcon />
+                                {/* vinodg2295@gmail.com */}
+                                {/* {count.map((val, index) => {
+                                  return (
+                                    <div key={index}>{count[val.email]}</div>
+                                  );
+                                })} */}
+                              </Typography>
+
+                              {/* count[0].email */}
                             </div>
                             {/* <input
                                 placeholder="Email"
@@ -110,7 +130,7 @@ export default function TemporaryDrawer(props) {
                           </Typography>
                           <Typography variant="body2">
                             <PhoneIcon />
-                            +91 8569473214
+                            {/* {count2} */}
                           </Typography>
                         </div>
                       </div>
