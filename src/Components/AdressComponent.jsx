@@ -14,7 +14,7 @@ function AdressComponent(props) {
   const [town, setTown] = useState("");
   const [city, setCity] = useState("");
   const [pincode, setPinCode] = useState("");
-  const { adressData, setAdressData } = useContext(AddressContext);
+  const { adressData } = useContext(AddressContext);
   const dispatch = useDispatch();
   const count1 = useSelector((state) => {
     return state.count;
@@ -30,7 +30,7 @@ function AdressComponent(props) {
       city: city,
       pincode: pincode,
     };
-    dispatch({ type: "SAVED_DATA", payload: temp });
+    dispatch({ type: "SAVEDDATA", payload: temp });
     // setAdressData({ ...temp });
     console.log(":::::::>", temp);
   };

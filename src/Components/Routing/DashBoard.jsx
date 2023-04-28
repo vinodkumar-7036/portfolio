@@ -1,62 +1,80 @@
-import { Bar } from "react-chartjs-2";
-import { Chart, LinearScale, CategoryScale, BarElement } from "chart.js";
-Chart.register(LinearScale, CategoryScale, BarElement);
-const labels = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "June",
-  "July",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+import React, { useState, useEffect } from "react";
+import { Chart, ArcElement, Tooltip, Legend, Title } from "chart.js";
+import { Pie } from "react-chartjs-2";
+Chart.register(ArcElement, Tooltip, Legend, Title);
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "Chart.js Bar Chart",
-    },
-  },
-};
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: [10, 100, 200, 300, 400, 500, 600, 500, 300, 200, 800],
-      backgroundColor: "rgb(255, 99, 132)",
-      stack: "Stack 0",
-    },
-    {
-      label: "Dataset 2",
-      data: [10, 100, 200, 300, 400, 500, 600],
-      backgroundColor: "rgb(75, 192, 192)",
-      stack: "Stack 0",
-    },
-    {
-      label: "Dataset 3",
-      data: [10, 100, 200, 400, 700, 800, 900],
-      backgroundColor: "rgb(53, 162, 235)",
-      stack: "Stack 1",
-    },
-  ],
-};
 function DashBoard() {
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    fetch("https://dummyjson.com/products").then((response) =>
+      response.json().then((json) => setProduct(json.products))
+    );
+  }, []);
+  product.length = 5;
+  console.log(product);
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <Bar data={data} />
+    <div className="container-fluid">
+      <h1>Pie Chart</h1>
+      <div className="row">
+        {/* <div className="col-md-5 mb-3 mt-3"></div> */}
+        <div className="col-md-5 mb-3 mt-3">
+          {product.length && (
+            <div className="classPie" style={{ width: "600px" }}>
+              <Pie
+                width={400}
+                height={200}
+                data={{
+                  labels:
+                    product.length && product.map((val, index) => val.title),
+
+                  datasets: [
+                    {
+                      label: "# of votes",
+                      data:
+                        product.length &&
+                        product.map((val, index) => val.price / 10),
+                      backgroundColor: [
+                        "rgba(255,99,132,0.2)",
+                        "rgba(54,162,235,0.2)",
+                        "rgba(255,206,86,0.2)",
+                        "rgba(75,192,192,0.2)",
+                        "rgba(153,102,255,0.2)",
+                        "rgba(255,159,64,0.2)",
+                      ],
+                      borderColor: [
+                        "rgba(255,99,132,0.2)",
+                        "rgba(54,162,235,0.2)",
+                        "rgba(255,206,86,0.2)",
+                        "rgba(75,192,192,0.2)",
+                        "rgba(153,102,255,0.2)",
+                        "rgba(255,159,64,0.2)",
+                      ],
+                      borderWidth: 1,
+                      hoverOffset: 20,
+                    },
+                  ],
+                }}
+                options={{
+                  responsive: true,
+                  plugins: {
+                    title: {
+                      fontSize: 30,
+                      text: "Chart js Tutorial",
+                      display: true,
+                      font: { size: 30 },
+                    },
+                    legend: {
+                      labels: {
+                        font: { size: 30 },
+                      },
+                    },
+                  },
+                }}
+              />
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

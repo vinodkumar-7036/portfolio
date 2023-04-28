@@ -41,7 +41,7 @@ export default function TemporaryDrawer(props) {
       phoneNo: phoneNo,
     };
 
-    dispatch({ type: "UPDATE_DATA", payload: obj });
+    dispatch({ type: "UPDATEDATA", payload: obj });
     // setInputData({ ...obj });
     // console.log(":::::>", obj);
   };

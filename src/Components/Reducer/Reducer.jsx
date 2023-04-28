@@ -6,7 +6,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "UPDATE_DATA":
+    case "UPDATEDATA":
       const newState = Object.assign({}, state, {
         count: [...state.count, action.payload],
       });
@@ -23,7 +23,7 @@ const initialStateCombine = {
 
 const reducerCombine = (state = initialStateCombine, action) => {
   switch (action.type) {
-    case "SAVED_DATA":
+    case "SAVEDDATA":
       const newState1 = Object.assign({}, state, {
         count1: [...state.count, action.payload],
       });
