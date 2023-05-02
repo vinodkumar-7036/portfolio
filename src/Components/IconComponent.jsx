@@ -28,6 +28,7 @@ export default function TemporaryDrawer(props) {
   const count = useSelector((state) => {
     return state.count;
   });
+  console.log(":::::count", count);
   // const count2 = useSelector((state) => {
   //   return state.count;
   // });

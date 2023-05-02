@@ -1,41 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import UserTable from "../UserTable";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 function ProductListing() {
-  const [data, setData] = useState([]);
-  const [order, setOrder] = useState("ASC");
+  const dispatch = useDispatch();
+  const tableData = useSelector((state) => {
+    return state.tableData;
+  });
+
   const getData = () => {
-    axios
-      .get("https://api.publicapis.org/entries")
-      // .then((result) => result.json())
-      .then((response) => {
-        setData(response.data.entries);
-      });
+    axios.get("https://api.publicapis.org/entries").then((response) => {
+      dispatch({ type: "TABLE_DATA", payload: response.data.entries });
+    });
   };
   useEffect(() => {
     getData();
   }, []);
+
   const sorting = (col) => {
-    if (order === "ASC") {
-      const sorted = [...data].sort((a, b) =>
-        a[col].toLowerCase() > b[col].toLowerCase() ? 1 : -1
-      );
-      setData(sorted);
-      setOrder("DSC");
-    }
-    if (order === "DSC") {
-      const sorted = [...data].sort((a, b) =>
-        a[col].toLowerCase() < b[col].toLowerCase() ? 1 : -1
-      );
-      setData(sorted);
-      setOrder("ASC");
-    }
+    dispatch({ type: "CHANGE_SORTING", payload: col });
   };
   return (
     <div>
       <h1>Table Demo</h1>
-      <UserTable data={data} sorting={sorting} />
+
+      <UserTable data={tableData} sorting={sorting} />
     </div>
   );
 }
