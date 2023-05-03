@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
       return newState;
     case "TABLE_DATA":
       const addedState = Object.assign({}, state, {
-        tableData: [...state.tableData, ...action.payload.splice(1, 50)],
+        tableData: [...action.payload.splice(1, 50)],
       });
       return addedState;
     case "CHANGE_SORTING":

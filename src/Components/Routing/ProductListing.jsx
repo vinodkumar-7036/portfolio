@@ -14,7 +14,9 @@ function ProductListing() {
       dispatch({ type: "TABLE_DATA", payload: response.data.entries });
     });
   };
+
   useEffect(() => {
+    dispatch({ type: "TABLE_DATA", payload: [] });
     getData();
   }, []);
 
