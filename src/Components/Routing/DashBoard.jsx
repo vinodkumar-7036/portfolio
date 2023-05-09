@@ -16,7 +16,6 @@ function DashBoard() {
     <div className="container-fluid">
       <h1>Pie Chart</h1>
       <div className="row">
-        {/* <div className="col-md-5 mb-3 mt-3"></div> */}
         <div className="col-md-5 mb-3 mt-3">
           {product.length && (
             <div className="classPie" style={{ width: "600px" }}>

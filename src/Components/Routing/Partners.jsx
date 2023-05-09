@@ -1,7 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 
-function Partners() {
-  return <div>Real Partners</div>;
+export class MapContainer extends Component {
+  render() {
+    return (
+      <Map google={this.props.google} zoom={14}>
+        <Marker onClick={this.onMarkerClick} name={"Current location"} />
+      </Map>
+    );
+  }
 }
 
-export default Partners;
+export default GoogleApiWrapper({
+  apiKey: "AIzaSyCXLSZ2r0qS56_8eN_w39JK8-wBu41K-Og",
+})(MapContainer);

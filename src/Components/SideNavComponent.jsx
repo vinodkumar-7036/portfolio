@@ -35,16 +35,18 @@ export default function SideNavComponent() {
       <List className="sidebar-items-list">
         {SideNavItems.map((link, index) => (
           <NavLink
+            className="linked"
             style={{ textDecoration: "none" }}
             key={index}
             to={link.path}
+            activeclassname="active"
           >
             <ListItem className="Nav_Container" key={index} disablePadding>
               <ListItemButton>
-                <ListItemIcon>
+                <ListItemIcon className="icon">
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText style={{ color: "grey" }} primary={link.name} />
+                <ListItemText className="Link-text" primary={link.name} />
               </ListItemButton>
             </ListItem>
           </NavLink>
